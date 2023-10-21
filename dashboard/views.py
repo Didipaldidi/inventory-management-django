@@ -14,9 +14,17 @@ def index(request):
 def staff(request):
     workers = User.objects.all()
     context = {
-        'workers': workers
+        'workers': workers,
     }
     return render(request, 'dashboard/staff.html', context)
+
+@login_required(login_url='user-login')
+def staff_detail(request, pk):
+    workers = User.objects.get(id = pk)
+    context = {
+        'workers': workers,
+    }
+    return render(request, 'dashboard/staff_detail.html', context)
 
 @login_required(login_url='user-login')
 def product(request):
@@ -37,6 +45,7 @@ def product(request):
 
     return render(request, 'dashboard/product.html', context)
 
+@login_required(login_url='user-login')
 def product_delete(request, pk):
     item = Product.objects.get(id = pk)
     if request.method == 'POST':
@@ -44,6 +53,7 @@ def product_delete(request, pk):
         return redirect('dashboard-product')
     return render(request, 'dashboard/product_delete.html')
 
+@login_required(login_url='user-login')
 def product_update(request, pk):
     item = Product.objects.get(id=pk)
     if request.method == 'POST':
