@@ -28,28 +28,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-    
+                                {% for order in orders %}
+                                {% if order.staff == user%}
                                 <tr>
-                                    <td>Book</td>
-                                    <td>Stationary</td>
-                                    <td>10</td>
+                                    <td> {{ order.product.name }}</td>
+                                    <td> {{ order.product.category}}</td>
+                                    <td> {{ order.order_quantity }}</td>
                                 </tr>
-                                <tr>
-                                    <td>Book</td>
-                                    <td>Stationary</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>Book</td>
-                                    <td>Stationary</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>Book</td>
-                                    <td>Stationary</td>
-                                    <td>10</td>
-                                </tr>
-    
+                                {% endif %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
